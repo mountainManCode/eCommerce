@@ -6,3 +6,9 @@ haters/
 .build/
 layout.md
 variables.env
+/*.env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
