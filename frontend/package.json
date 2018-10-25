@@ -1,7 +1,7 @@
 {
   "name": "sick-fits-frontend",
   "version": "1.0.0",
-  "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
+  "description": "Happy Tails! An example React, GraphQL, Next and Apollo",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
@@ -48,10 +48,7 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.js",
-    "testPathIgnorePatterns": [
-      "<rootDir>/.next/",
-      "<rootDir>/node_modules/"
-    ],
+    "testPathIgnorePatterns": ["<rootDir>/.next/", "<rootDir>/node_modules/"],
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
       ".*": "babel-jest"
@@ -61,9 +58,7 @@
   "babel": {
     "env": {
       "development": {
-        "presets": [
-          "next/babel"
-        ],
+        "presets": ["next/babel"],
         "plugins": [
           [
             "styled-components",
@@ -75,9 +70,7 @@
         ]
       },
       "production": {
-        "presets": [
-          "next/babel"
-        ],
+        "presets": ["next/babel"],
         "plugins": [
           [
             "styled-components",

@@ -6,7 +6,7 @@ const Meta = () => (
     <meta charSet="utf-8" />
     <link ref="shorcut icon" href="/static/favicon.png" />
     <link ref="stylesheet" type="text/css" href="/static/nprogress.css" />
-    <title>Sick Fits!</title>
+    <title>Happy Tails!</title>
   </Head>
 );
 
