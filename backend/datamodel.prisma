@@ -1,3 +1,4 @@
+# Changes the types on the database
 enum Permission {
   ADMIN
   USER
@@ -13,7 +14,7 @@ type User {
   email: String! @unique
   password: String!
   resetToken: String
-  resetTokenExpiry: Float
+  resetTokenExpiry: String
   permissions: [Permission]
 }
 
