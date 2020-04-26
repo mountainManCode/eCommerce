@@ -15,7 +15,6 @@ const SIGNUP_MUTATION = gql`
       id
       email
       name
-      password
     }
   }
 `;
@@ -43,13 +42,13 @@ class Signup extends Component {
             method="post"
             onSubmit={async e => {
               e.preventDefault();
-              const res = await signup();
+              await signup();
               this.setState({ name: '', email: '', password: '' });
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>
               <h2>Sign up for an account.</h2>
-              <Error error={error} />>
+              <Error error={error} />
               <label htmlFor="email">
                 Email
                 <input
@@ -60,6 +59,7 @@ class Signup extends Component {
                   onChange={this.saveToState}
                 />
               </label>
+
               <label htmlFor="name">
                 Name
                 <input
@@ -70,8 +70,9 @@ class Signup extends Component {
                   onChange={this.saveToState}
                 />
               </label>
+
               <label htmlFor="password">
-                password
+                Password
                 <input
                   type="password"
                   name="password"
@@ -80,6 +81,7 @@ class Signup extends Component {
                   onChange={this.saveToState}
                 />
               </label>
+
               <button type="submit">Sign Up</button>
             </fieldset>
           </Form>
@@ -90,3 +92,4 @@ class Signup extends Component {
 }
 
 export default Signup;
+export { SIGNUP_MUTATION };
