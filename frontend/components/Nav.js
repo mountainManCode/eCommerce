@@ -7,13 +7,15 @@ const Nav = () => (
   <User>
     {({ data: { me } }) => (
       <NavStyles>
+      {me && (
+        <p>{me.name}</p>
+      )}
         <Link href="/items">
           <a>Shop</a>
         </Link>
 
         {me && (
           <>
-            <p>{me.name}</p>
             <Link href="/sell">
               <a>Sell</a>
             </Link>

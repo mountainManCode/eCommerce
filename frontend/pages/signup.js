@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import RequestReset from '../components/RequestReset';
 import Signup from '../components/Signup';
 import Signin from '../components/Signin';
 import styled from 'styled-components';
@@ -13,6 +14,7 @@ const SignupPage = props => (
   <Columns>
     <Signup />
     <Signin />
+    <RequestReset />
   </Columns>
 );
 export default SignupPage;
