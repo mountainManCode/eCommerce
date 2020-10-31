@@ -144,6 +144,7 @@ const Mutations = {
 		// 4. Return the message
 		return { message: 'thanks!' };
 	},
+
 	async resetPassword( parent, args, ctx, info ) {
 		// 1.  check if the passwords match
 		if ( args.password !== args.confirmPassword ) {
@@ -182,6 +183,7 @@ const Mutations = {
 		// 8. Return the new user
 		return updatedUser;
 	},
+
 	async updatePermissions( parent, args, ctx, info ) {
 		// 1. Check if User is logged in.
 		if ( !ctx.request.userId ) {
@@ -196,7 +198,7 @@ const Mutations = {
 		}, info );
 		
 		// 3. Check if they have Permissions to do this.
-		hasPermission( currentUser, [ 'ADMIN', 'PERMISSIONUPDATE' ]);
+		hasPermission( currentUser, ['ADMIN', 'PERMISSIONUPDATE']);
 
 		// 4. Update the Permissions.
 		return ctx.db.mutation.updateUser({
@@ -209,7 +211,48 @@ const Mutations = {
 				id: args.userId,
 			}
 		}, info );
-	}
+	},
+
+	async addToCart( parent, args, ctx, info ) {
+		// 1. Make sure User is signed in.
+		const {userId} = ctx.request;
+		if (!userId) {
+			throw new Error('You must be signed in soon');
+		}
+		// 2. Query the users current cart.
+		const [existingCartItem] = await ctx.db.query.cartItems(
+			{
+				where: {
+					user: { id: userId },
+					item: { id: args.id },
+				},
+		});
+		// console.log( existingCartItem );
+		// 3. Check if that item is already in their cart and increment by 1 if it is.
+		if (existingCartItem) {
+			console.log( existingCartItem.id + 'This item is already in the cart' );
+			return ctx.db.mutation.updateCartItem(
+				{
+					where: { id: existingCartItem.id },
+					data: { quantity: existingCartItem.quantity + 1 },
+				},
+				info
+			);
+		}
+		// 4. If its not, create a fresh CartItem for that User.
+		return ctx.db.mutation.createCartItem({
+			data: {
+				user:{
+					connect: { id: userId },
+				},
+				item: {
+					connect: { id: args.id },
+				}
+			}
+			},
+			info
+		);
+	},
 };
 
 module.exports = Mutations;

@@ -15,7 +15,7 @@ type Mutation {
   requestReset(email: String!): SuccessMessage
   resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
   updatePermissions(permissions: [Permission], userId: ID!): User
-  addToCart(cart: [CartItem], user)
+  addToCart(id: ID!): CartItem
 
   # TODO: add the image, and largeImage to updateItem workflow.
 
