@@ -18,7 +18,7 @@ function createClient({ headers }) {
     clientState: {
       resolvers: {
         Mutation: {
-          toggleCart( _, variables, { cache }) {
+          toggleCart(_, variables, { cache }) {
             // Read the cartOpen value from the cache.
             const { cartOpen } = cache.readQuery({
               query: LOCAL_STATE_QUERY,
@@ -27,14 +27,14 @@ function createClient({ headers }) {
             const data = {
               data: { cartOpen: !cartOpen },
             }
-            
-            cache.writeData( data );
+
+            cache.writeData(data);
             return data;
           },
         },
       },
       defaults: {
-        cartOpen: true,
+        cartOpen: false,
       },
     },
   });
